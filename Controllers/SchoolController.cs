@@ -1,3 +1,5 @@
+using System;
+using ASP.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.Controllers
@@ -6,7 +8,12 @@ namespace ASP.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var school = new School();
+            school.SchoolId = Guid.NewGuid().ToString();
+            school.Name = "Platzi School";
+            school.Year = 2005;
+            
+            return View(school);
         }
     }
 }
