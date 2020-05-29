@@ -1,8 +1,9 @@
 @{
-    ViewData["Title"] = "School information";
+    ViewData["Title"] = "School information:";
 }
 
-<h1>School</h1>
+<h1>@ViewData["Title"]</h1>
 <h2>Name: @Model.Name</h2>
 <h2>Id: @Model.SchoolId</h2>
 <p>Year: @Model.Year</p>
+<p><i>@ViewBag.DynamicThing</i></p>

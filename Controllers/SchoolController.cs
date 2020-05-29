@@ -12,6 +12,8 @@ namespace ASP.Controllers
             school.SchoolId = Guid.NewGuid().ToString();
             school.Name = "Platzi School";
             school.Year = 2005;
+
+            ViewBag.DynamicThing = "The Nun";
             
             return View(school);
         }
