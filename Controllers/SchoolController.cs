@@ -9,9 +9,9 @@ namespace ASP.Controllers
         public IActionResult Index()
         {
             var school = new School();
-            school.SchoolId = Guid.NewGuid().ToString();
+            school.UniqueId = Guid.NewGuid().ToString();
             school.Name = "Platzi School";
-            school.Year = 2005;
+            school.YearOfCreation = 2005;
 
             ViewBag.DynamicThing = "The Nun";
             
