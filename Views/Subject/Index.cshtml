@@ -1,8 +1,12 @@
+@model Subject;
 @{
     ViewData["Title"] = "Subject information:";
 }
 
 <h1>@ViewData["Title"]</h1>
 <h2>Id: @Model.UniqueId</h2>
-<p>Subject: @Model.Name</p>
+<p>Subject: @Model.Name. <br/> Id: @Model.UniqueId</p>
 <p>Date: @ViewBag.Date</p>
+
+<strong>From principal subject</strong>
+<partial name="SimpleSubject"/>

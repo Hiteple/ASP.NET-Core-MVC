@@ -1,0 +1,12 @@
+@model List<Subject>
+
+@{
+    ViewData["Title"] = "Subject information:";
+}
+
+<strong>From principal subject</strong>
+
+@foreach (var subject in Model)
+{
+    <partial name="SimpleSubject" model="subject"/>
+}
