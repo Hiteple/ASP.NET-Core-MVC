@@ -12,7 +12,7 @@ namespace ASP.Controllers
         // GET
         public IActionResult Index()
         {
-            Student myStudent = new Student {Name = "Lawrence", UniqueId = Guid.NewGuid().ToString()};
+            Student myStudent = new Student {Name = "Lawrence", Id = Guid.NewGuid().ToString()};
             
             return View(myStudent);
         }
@@ -33,9 +33,9 @@ namespace ASP.Controllers
             var studentList = from n1 in name1
                 from n2 in name2
                 from a1 in lastname1
-            select new Student { Name = $"{n1} {n2} {a1}", UniqueId = Guid.NewGuid().ToString() };
+            select new Student { Name = $"{n1} {n2} {a1}", Id = Guid.NewGuid().ToString() };
 
-            return studentList.OrderBy((al) => al.UniqueId).ToList();
+            return studentList.OrderBy((al) => al.Id).ToList();
         }
     }
 }

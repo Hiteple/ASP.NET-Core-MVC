@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ASP.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,20 +7,17 @@ namespace ASP.Controllers
 {
     public class SchoolController : Controller
     {
+        private SchoolContext _context;
         public IActionResult Index()
         {
-            var school = new School();
-            school.UniqueId = Guid.NewGuid().ToString();
-            school.Name = "Platzi School";
-            school.Address = "Viva 7713";
-            school.Country = "Bogotá";
-            school.City = "Guadalajara";
-            school.SchoolType = SchoolType.University;
-            school.YearOfCreation = 2005;
-
+            var school = _context.Schools.FirstOrDefault();
             ViewBag.DynamicThing = "The Nun";
-            
             return View(school);
+        }
+
+        public SchoolController(SchoolContext context)
+        {
+            _context = context;
         }
     }
 }
