@@ -12,7 +12,8 @@ namespace ASP.Controllers
         // GET
         public IActionResult Index()
         {
-            return View(_context.Subjects.FirstOrDefault());
+            var subjects = _context.Subjects.FirstOrDefault();
+            return View(subjects);
         }
         public IActionResult MultipleSubject()
         {

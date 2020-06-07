@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.Controllers
 {
-    public class SchoolController : Controller
+    public class SchoolController: Controller
     {
         public IActionResult Index()
         {
