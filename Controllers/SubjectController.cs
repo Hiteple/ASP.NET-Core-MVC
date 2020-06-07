@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Xml;
 using ASP.Models;
@@ -11,23 +12,20 @@ namespace ASP.Controllers
         // GET
         public IActionResult Index()
         {
-            Subject mySubject = new Subject {Name = "Math", Id = Guid.NewGuid().ToString()};
-            
-            return View(mySubject);
+            return View(_context.Subjects.FirstOrDefault());
         }
         public IActionResult MultipleSubject()
         {
-            List<Subject> subjectList = new List<Subject>()
-            {
-                new Subject {Name = "Math", Id = Guid.NewGuid().ToString()},
-                new Subject {Name = "Science", Id = Guid.NewGuid().ToString()},
-                new Subject {Name = "Spanish", Id = Guid.NewGuid().ToString()},
-                new Subject {Name = "English", Id = Guid.NewGuid().ToString()},
-            };
-
             ViewBag.Date = DateTime.Now;
 
-            return View("MultipleSubject", subjectList);
+            return View("MultipleSubject", _context.Subjects);
+        }
+        
+        private SchoolContext _context;
+        
+        public SubjectController(SchoolContext context)
+        {
+            _context = context;
         }
     }
 }

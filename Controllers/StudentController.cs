@@ -12,30 +12,20 @@ namespace ASP.Controllers
         // GET
         public IActionResult Index()
         {
-            Student myStudent = new Student {Name = "Lawrence", Id = Guid.NewGuid().ToString()};
-            
-            return View(myStudent);
+            return View(_context.Students.FirstOrDefault());
         }
         public IActionResult MultipleStudent()
         {
-            List<Student> students = GenerateStudents();
             ViewBag.Date = DateTime.Now;
 
-            return View("MultipleStudent", students);
+            return View("MultipleStudent", _context.Students);
         }
+
+        private SchoolContext _context;
         
-        private List<Student> GenerateStudents()
+        public StudentController(SchoolContext context)
         {
-            string[] name1 = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
-            string[] lastname1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
-            string[] name2 = { "Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
-
-            var studentList = from n1 in name1
-                from n2 in name2
-                from a1 in lastname1
-            select new Student { Name = $"{n1} {n2} {a1}", Id = Guid.NewGuid().ToString() };
-
-            return studentList.OrderBy((al) => al.Id).ToList();
+            _context = context;
         }
     }
 }

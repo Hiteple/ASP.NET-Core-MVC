@@ -7,7 +7,6 @@ namespace ASP.Controllers
 {
     public class SchoolController : Controller
     {
-        private SchoolContext _context;
         public IActionResult Index()
         {
             var school = _context.Schools.FirstOrDefault();
@@ -15,6 +14,8 @@ namespace ASP.Controllers
             return View(school);
         }
 
+        private SchoolContext _context;
+        
         public SchoolController(SchoolContext context)
         {
             _context = context;
