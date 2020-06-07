@@ -5,6 +5,8 @@ namespace ASP.Models
 {
     public class Student: BaseSchool
     {
-        public List<Exam> Exams { get; set; } = new List<Exam>();
+        public string CourseId { get; set; }
+        public Course Course { get; set; }
+        public List<Exam> Exams { get; set; }
     }
 }
