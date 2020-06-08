@@ -1,0 +1,11 @@
+@model Course;
+@{
+    ViewData["Title"] = "Course information:";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Student: @Model.Name</p>
+<p>Date: @ViewBag.Date</p>
+
+<strong>From principal student</strong>
+<partial name="BaseSchoolSimple"/>

@@ -7,13 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController: Controller
     {
         // GET
-        public IActionResult Index()
+        [Route("Student/Index")]
+        [Route("Student/Index/{studentId}")]
+        public IActionResult Index(string studentId)
         {
-            var students = _context.Students.FirstOrDefault();
-            return View(students);
+            if (!string.IsNullOrWhiteSpace(studentId))
+            {
+                var student = from stu in _context.Students where stu.Id == studentId select stu;
+                return View(student.SingleOrDefault());
+            }
+            return View("MultipleStudent", _context.Students);
         }
         public IActionResult MultipleStudent()
         {
