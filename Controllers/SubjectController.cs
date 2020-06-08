@@ -10,11 +10,18 @@ namespace ASP.Controllers
     public class SubjectController : Controller
     {
         // GET
-        public IActionResult Index()
+        [Route("Subject/Index")]
+        [Route("Subject/Index/{subjectId}")]
+        public IActionResult Index(string subjectId)
         {
-            var subjects = _context.Subjects.FirstOrDefault();
-            return View(subjects);
+            if (!string.IsNullOrWhiteSpace(subjectId))
+            {
+                var subject = from sub in _context.Subjects where sub.Id == subjectId select sub;
+                return View(subject.SingleOrDefault());
+            }
+            return View("MultipleSubject", _context.Subjects);
         }
+        
         public IActionResult MultipleSubject()
         {
             ViewBag.Date = DateTime.Now;
