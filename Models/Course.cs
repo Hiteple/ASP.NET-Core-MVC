@@ -6,7 +6,9 @@ namespace ASP.Models
 {
     public class Course: BaseSchool
     {
-        [Required]
+        [Required(ErrorMessage = "The name is required")]
+        [StringLength(5)]
+        [Display(Prompt = "Please input a course name")]
         public override string Name { get; set; }
         
         public SchoolTime SchoolTime { get; set; }

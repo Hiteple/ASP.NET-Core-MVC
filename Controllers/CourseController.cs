@@ -48,7 +48,7 @@ namespace ASP.Controllers
                 return View();  
             }
 
-            return View("Index", course);
+            return View(course);
         }
 
         private SchoolContext _context;
