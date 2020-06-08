@@ -27,6 +27,29 @@ namespace ASP.Controllers
 
             return View("MultipleCourses", _context.Courses);
         }
+        
+        public IActionResult Create()
+        {
+            ViewBag.Date = DateTime.Now;
+
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Create(Course course)
+        {
+            ViewBag.Date = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                var school = _context.Schools.FirstOrDefault();
+                if (school != null) course.SchoolId = school.Id;
+                _context.Courses.Add(course);
+                _context.SaveChanges();
+                return View();  
+            }
+
+            return View("Index", course);
+        }
 
         private SchoolContext _context;
         
